@@ -105,7 +105,7 @@ function ConfigurarUsuario() {
         <a className='alias'>👤 {usuarioActual?.alias}</a>
         <nav>
           <a href="/entrenamientos">Planes de entrenamientos</a>
-          <a href="/home">Cerrar sesión</a>
+          <a href="/">Cerrar sesión</a>
         </nav>
       </header>
 
