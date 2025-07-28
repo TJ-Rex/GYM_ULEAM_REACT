@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../assets/css/configuracion_perfil.css';
+import iconoPerfil from '../assets/Imagen_Gym/icono_perfil.webp';
+
+import { useNavigate } from 'react-router-dom';
 
 function ConfigurarUsuario() {
   const [form, setForm] = useState({
@@ -13,6 +17,8 @@ function ConfigurarUsuario() {
   const usuarioActual = JSON.parse(localStorage.getItem('usuario_actual'));
 
   const [errores, setErrores] = useState({});
+
+  const navigate = useNavigate();
 
   // Cargar usuario al inicio
   useEffect(() => {
@@ -84,7 +90,7 @@ function ConfigurarUsuario() {
       }
 
       alert('✅ Perfil actualizado correctamente');
-      window.location.href = '/home2';
+      navigate('/home2');
     }
   };
 
@@ -95,7 +101,7 @@ function ConfigurarUsuario() {
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
     localStorage.removeItem('usuario_actual');
     alert('✅ Cuenta eliminada');
-    window.location.href = '/home';
+    window.location.href = '/';
   };
 
   return (
@@ -104,8 +110,9 @@ function ConfigurarUsuario() {
         <h1>💪🏋️‍♀️ GYM_ULEAM</h1>
         <a className='alias'>👤 {usuarioActual?.alias}</a>
         <nav>
-          <a href="/entrenamientos">Planes de entrenamientos</a>
-          <a href="/">Cerrar sesión</a>
+          <Link to="/home2">Inicio</Link>
+          <Link to="/entrenamientos">Planes de entrenamientos</Link>
+          <Link to="/">Cerrar sesión</Link>
         </nav>
       </header>
 
@@ -113,7 +120,9 @@ function ConfigurarUsuario() {
         <h2>Configuración de Perfil</h2>
 
         <div className="imagen-perfil">
-          <img src="../src/assets/Imagen_Gym/icono_perfil.webp" alt="Foto de perfil" id="fotoPerfil" />
+          <Link to="/configurar">
+            <img src={iconoPerfil} alt="Perfil" width="25" />
+          </Link>
           <p><label htmlFor="subirFoto" className="subir-foto-label">Subir nueva foto</label></p>
           <input type="file" id="subirFoto" name="subirFoto" accept="image/*" style={{ display: 'none' }} />
         </div>
@@ -172,9 +181,15 @@ function ConfigurarUsuario() {
 
           <div className="footer-redes">
             <h4>Síguenos</h4>
-            <a href="https://www.facebook.com/?locale=es_LA" title="Facebook"><i className="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/" title="Instagram"><i className="fa-brands fa-square-instagram"></i></a>
-            <a href="https://x.com/?lang=es" title="Twitter"><i className="fa-brands fa-square-x-twitter"></i></a>
+            <a href="https://www.facebook.com/?locale=es_LA" title="Facebook" target="_blank" rel="noopener noreferrer">
+              <i className="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/" title="Instagram" target="_blank" rel="noopener noreferrer">
+              <i className="fa-brands fa-square-instagram"></i>
+            </a>
+            <a href="https://x.com/?lang=es" title="Twitter" target="_blank" rel="noopener noreferrer">
+              <i className="fa-brands fa-square-x-twitter"></i>
+            </a>
           </div>
         </div>
 

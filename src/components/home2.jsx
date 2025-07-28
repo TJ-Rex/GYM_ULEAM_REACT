@@ -3,6 +3,15 @@
 import '../assets/css/home2.css';
 import { useEffect, useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
+import img1 from '../assets/Imagen_Gym/imagen1.jpeg';
+import img2 from '../assets/Imagen_Gym/imagen2.jpg';
+import img3 from '../assets/Imagen_Gym/imagen3.jpg';
+import img4 from '../assets/Imagen_Gym/imagen4.avif';
+import iconoPerfil from '../assets/Imagen_Gym/icono_perfil.webp';
+
+
 function PaginaInicio2() {
 
   const usuarioActual = JSON.parse(localStorage.getItem('usuario_actual'));
@@ -27,15 +36,19 @@ function PaginaInicio2() {
       <header>
         <h1>💪🏋️‍♀️GYM_ULEAM</h1>
         <nav>
-          <a href="/entrenamientos">Planes de entrenamiento</a>
-          <a href="/configurar">{usuarioActual?.alias}<img src="../src/assets/Imagen_Gym/icono_perfil.webp" alt="Perfil" width="25" /></a>
+          <Link to="/entrenamientos">Planes de entrenamiento</Link>
+          <Link to="/configurar">
+            {usuarioActual?.alias}
+            <img src={iconoPerfil} alt="Perfil" width="25" /></Link>
         </nav>
       </header>
 
       <main className="main-content">
         <section className="gallery">
-            <div><img src="../src/assets/Imagen_Gym/imagen1.jpeg" /></div><div><img src="../src/assets/Imagen_Gym/imagen2.jpg" /></div>
-            <div><img src="../src/assets/Imagen_Gym/imagen3.jpg" /></div><div><img src="../src/assets/Imagen_Gym/imagen4.avif" /></div>
+            <div><img src={img1} alt="Imagen 1" /></div>
+            <div><img src={img2} alt="Imagen 2" /></div>
+            <div><img src={img3} alt="Imagen 3" /></div>
+            <div><img src={img4} alt="Imagen 4" /></div>
         </section>
 
         <section className="info">
@@ -76,7 +89,7 @@ function PaginaInicio2() {
               )}
             </div>
           <div className="añadir-reseña">
-            <button onClick={() => window.location.href = '/reseña'}>Añadir reseña</button>
+            <Link to="/reseña" className="boton-reseña">Añadir reseña</Link>
           </div>
         </section>
 
@@ -120,9 +133,9 @@ function PaginaInicio2() {
 
           <div className="footer-redes">
             <h4>Síguenos</h4>
-            <a href="https://www.facebook.com/?locale=es_LA" title="Facebook"><i className="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/" title="Instagram"><i className="fa-brands fa-square-instagram"></i></a>
-            <a href="https://x.com/?lang=es" title="Twitter"><i className="fa-brands fa-square-x-twitter"></i></a>
+            <Link to="https://www.facebook.com/?locale=es_LA" title="Facebook"><i className="fa-brands fa-facebook"></i></Link>
+            <Link to="https://www.instagram.com/" title="Instagram"><i className="fa-brands fa-square-instagram"></i></Link>
+            <Link to="https://x.com/?lang=es" title="Twitter"><i className="fa-brands fa-square-x-twitter"></i></Link>
           </div>
         </div>
 

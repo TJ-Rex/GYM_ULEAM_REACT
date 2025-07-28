@@ -146,7 +146,7 @@ hr {
   margin-top: 1.5rem;
 }
 
-.añadir-reseña button {
+.boton-reseña {
   background-color:var(--color-secundario);
   color: white;
   padding: 0.6rem 1.2rem;
@@ -155,9 +155,10 @@ hr {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: auto;
+  text-decoration: none;
 }
 
-.añadir-reseña button:hover {
+.boton-reseña:hover {
   background-color:var(--color-principal);
 }
 

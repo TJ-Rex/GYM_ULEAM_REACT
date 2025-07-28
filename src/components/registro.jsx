@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/registro.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 function Registro() {
+  const navigate = useNavigate();
   const [registroExitoso, setRegistroExitoso] = useState(false);
 
   const [form, setForm] = useState({
@@ -67,9 +69,8 @@ function Registro() {
 
       setRegistroExitoso(true);
 
-      // Redirigir después de 2 segundos
       setTimeout(() => {
-        window.location.href = '/home2';
+        navigate('/home2');
       }, 2000);
     }
   };
@@ -79,8 +80,8 @@ function Registro() {
       <header>
         <h1>💪🏋️‍♀️GYM_ULEAM</h1>
         <nav>
-          <a href="/login">Iniciar Sesión</a>
-          <a href="/registro">Registrarse</a>
+          <Link to="/login">Iniciar Sesión</Link>
+          <Link to="/">Inicio</Link>
         </nav>
       </header>
 
@@ -121,16 +122,46 @@ function Registro() {
 
             <p>O registrarse con:</p>
             <div className="social-buttons">
-              <button type="button" className="google">Google</button>
-              <button type="button" className="microsoft">Microsoft</button>
-              <button type="button" className="apple">Apple</button>
+              <button type="button" className="google" onClick={() => window.location.href='https://workspace.google.com/intl/es-419/gmail/'}>Google</button>
+              <button type="button" className="microsoft" onClick={() => window.location.href='https://www.microsoft.com/es-ec/'}>Microsoft</button>
+              <button type="button" className="apple" onClick={() => window.location.href='https://www.icloud.com/'}>Apple</button>
             </div>
           </form>
         </div>
       </main>
 
       <footer>
-        <div className="footer-contenido">{/* ... mismo footer ... */}</div>
+        <div className="footer-contenido">
+          <div className="footer-info">
+            <h3>GYM_ULEAM</h3>
+            <p>Gimnasio oficial de la Universidad Laica Eloy Alfaro de Manabí</p>
+          </div>
+
+          <div className="footer-contacto">
+            <h4>Contacto</h4>
+            <p>Correo: gimnasio@uleam.edu.ec</p>
+            <p>Teléfono: +593 5 2620 888</p>
+          </div>
+
+          <div className="footer-horario">
+            <h4>Horarios</h4>
+            <p>Lunes a Viernes: 06:00 - 20:00</p>
+            <p>Sábados: 08:00 - 14:00</p>
+          </div>
+
+          <div className="footer-ubicacion">
+            <h4>Ubicación</h4>
+            <p>Campus ULEAM, Manta, Ecuador</p>
+          </div>
+
+          <div className="footer-redes">
+            <h4>Síguenos</h4>
+            <Link to="https://www.facebook.com/?locale=es_LA" title="Facebook"><i className="fa-brands fa-facebook"></i></Link>
+            <Link to="https://www.instagram.com/" title="Instagram"><i className="fa-brands fa-square-instagram"></i></Link>
+            <Link to="https://x.com/?lang=es" title="Twitter"><i className="fa-brands fa-square-x-twitter"></i></Link>
+          </div>
+        </div>
+
         <div className="footer-copy">
           <p>&copy; 2025 GYM_ULEAM. Todos los derechos reservados.</p>
         </div>

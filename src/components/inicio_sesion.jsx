@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import '../assets/css/inicio_sesion.css';
-// import '@fortawesome/fontawesome-free/css/all.min.css';
+
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [form, setForm] = useState({
@@ -10,10 +12,11 @@ function Login() {
 
   const [errores, setErrores] = useState({});
   const [errorLogin, setErrorLogin] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    setErrorLogin(''); // limpia error al escribir
+    setErrorLogin('');
   };
 
   const handleSubmit = (e) => {
@@ -41,7 +44,7 @@ function Login() {
       if (usuarioEncontrado) {
         localStorage.setItem('usuario_actual', JSON.stringify(usuarioEncontrado));
         alert('✅ Sesión iniciada correctamente');
-        window.location.href = '/home2';
+        navigate('/home2');  // <-- Esta es la línea cambiada
       } else {
         setErrorLogin('❌ Correo o contraseña incorrectos.');
       }
@@ -53,8 +56,8 @@ function Login() {
       <header>
         <h1>💪🏋️‍♀️GYM_ULEAM</h1>
         <nav>
-          <a href="/login">Iniciar Sesión</a>
-          <a href="/registro">Registrarse</a>
+          <Link to="/">Inicio</Link>
+          <Link to="/registro">Registrarse</Link>
         </nav>
       </header>
 
@@ -88,7 +91,7 @@ function Login() {
 
             <button type="submit" className="btn-primary">Continuar</button>
 
-            <a href="/recuperar" className="forgot-link">¿No recuerdas tu contraseña?</a>
+            <Link to="/recuperar" className="forgot-link">¿No recuerdas tu contraseña?</Link>
 
             <p>O continuar con:</p>
             <div className="social-buttons">
@@ -97,7 +100,8 @@ function Login() {
               <button type="button" className="apple" onClick={() => window.location.href='https://www.icloud.com/'}>Apple</button>
             </div>
 
-            <p className="register-link">¿No tienes una cuenta? <a href="/registro">Registrarse</a></p>
+            <p className="register-link">¿No tienes una cuenta? <Link to="/registro">Registrarse</Link></p>
+
           </form>
         </div>
       </main>
@@ -128,9 +132,9 @@ function Login() {
 
           <div className="footer-redes">
             <h4>Síguenos</h4>
-            <a href="https://www.facebook.com/?locale=es_LA" title="Facebook"><i className="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/" title="Instagram"><i className="fa-brands fa-square-instagram"></i></a>
-            <a href="https://x.com/?lang=es" title="Twitter"><i className="fa-brands fa-square-x-twitter"></i></a>
+            <Link to="https://www.facebook.com/?locale=es_LA" title="Facebook"><i className="fa-brands fa-facebook"></i></Link>
+            <Link to="https://www.instagram.com/" title="Instagram"><i className="fa-brands fa-square-instagram"></i></Link>
+            <Link to="https://x.com/?lang=es" title="Twitter"><i className="fa-brands fa-square-x-twitter"></i></Link>
           </div>
         </div>
 

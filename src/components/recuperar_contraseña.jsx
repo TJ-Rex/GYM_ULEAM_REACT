@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import '../assets/css/recuperar_contraseña.css';
 
+import { Link } from 'react-router-dom';
+
+import { useNavigate } from 'react-router-dom';
+
 function RecuperarContrasena() {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -8,7 +12,8 @@ function RecuperarContrasena() {
   const [codeError, setCodeError] = useState('');
   const [generatedCode, setGeneratedCode] = useState('');
   const [codigoMostrado, setCodigoMostrado] = useState('');
-  const [usuarioEncontrado, setUsuarioEncontrado] = useState(null); // 💡 Aquí estaba mal ubicado
+  const [usuarioEncontrado, setUsuarioEncontrado] = useState(null);
+  const navigate = useNavigate();
 
   const handleEnviarCodigo = () => {
     const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
@@ -22,9 +27,9 @@ function RecuperarContrasena() {
       return;
     }
 
-    setUsuarioEncontrado(usuario); // ✅ Guarda el usuario válido
+    setUsuarioEncontrado(usuario);
     setEmailError('');
-    const nuevoCodigo = Math.floor(100000 + Math.random() * 900000).toString(); // 6 dígitos
+    const nuevoCodigo = Math.floor(100000 + Math.random() * 900000).toString(); 
     setGeneratedCode(nuevoCodigo);
     setCodigoMostrado(`Tu código es: ${nuevoCodigo}`);
   };
@@ -44,9 +49,8 @@ function RecuperarContrasena() {
     }
 
     if (valid) {
-      // ✅ Guardar el usuario correcto en localStorage
       localStorage.setItem('usuario_actual', JSON.stringify(usuarioEncontrado));
-      window.location.href = '/configurar';
+      navigate('/configurar');  // <-- Cambio realizado aquí
     }
   };
 
@@ -55,8 +59,8 @@ function RecuperarContrasena() {
       <header>
         <h1>💪🏋️‍♀️GYM_ULEAM</h1>
         <nav>
-          <a href="/login">Iniciar Sesión</a>
-          <a href="/registro">Registrarse</a>
+          <Link to="/login">Iniciar Sesión</Link>
+          <Link to="/registro">Registrarse</Link>
         </nav>
       </header>
 
@@ -134,9 +138,9 @@ function RecuperarContrasena() {
 
           <div className="footer-redes">
             <h4>Síguenos</h4>
-            <a href="https://www.facebook.com/?locale=es_LA" title="Facebook"><i className="fa-brands fa-facebook"></i></a>
-            <a href="https://www.instagram.com/" title="Instagram"><i className="fa-brands fa-square-instagram"></i></a>
-            <a href="https://x.com/?lang=es" title="Twitter"><i className="fa-brands fa-square-x-twitter"></i></a>
+            <a href="https://www.facebook.com/?locale=es_LA" title="Facebook" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/" title="Instagram" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-square-instagram"></i></a>
+            <a href="https://x.com/?lang=es" title="Twitter" target="_blank" rel="noopener noreferrer"><i className="fa-brands fa-square-x-twitter"></i></a>
           </div>
         </div>
 
